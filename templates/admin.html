@@ -18,6 +18,72 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <title>CampusAssist-Admin</title>
+    <style>
+      * {
+  box-sizing: border-box;
+}
+
+@-webkit-keyframes ticker {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+  }
+  100% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+@keyframes ticker {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+  }
+  100% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+.ticker-wrap {
+  position: absolute;
+  top: 15%;
+  width: 100%;
+  overflow: hidden;
+  height: 2rem;
+  background-color: #FFEFEF;
+  color: black;
+  padding-left: 100%;
+  box-sizing: content-box;
+}
+.ticker-wrap .ticker {
+  display: inline-block;
+  height: 2rem;
+  line-height: 2rem;
+  white-space: nowrap;
+  padding-right: 100%;
+  box-sizing: content-box;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-name: ticker;
+  animation-name: ticker;
+  -webkit-animation-duration: 30s;
+  animation-duration: 30s;
+}
+.ticker-wrap .ticker__item {
+  display: inline-block;
+  padding: 0 2rem;
+  font-size: 1rem;
+  color: black;
+}
+
+body{
+  overflow-x: hidden;
+}
+
+    </style>
 
     <!-- Bootstrap CSS CDN -->
     <link
@@ -121,56 +187,39 @@
         <div id="admin-disp-db">
           <div class="db-area">
             
-            <div class="main-container">
+              
+            
+            <!-- <div class="main-container">
               <div class="year-stats">
                 <div class="month-group">
-                  <div class="bar h-100"></div>
-                  <p class="month">Jan</p>
-                </div>
-                <div class="month-group">
-                  <div class="bar h-50"></div>
-                  <p class="month">Feb</p>
-                </div>
-                <div class="month-group">
-                  <div class="bar h-75"></div>
-                  <p class="month">Mar</p>
+                  <div class="bar h-25"></div>
+                  <p class="month">Chem</p>
                 </div>
                 <div class="month-group">
                   <div class="bar h-25"></div>
-                  <p class="month">Apr</p>
+                  <p class="month">Civil</p>
+                </div>
+                <div class="month-group">
+                  <div class="bar h-100"></div>
+                  <p class="month">CSE</p>
+                </div>
+                <div class="month-group">
+                  <div class="bar h-75"></div>
+                  <p class="month">ECE</p>
+                </div>
+                <div class="month-group ">
+                  <div class="bar h-25"></div>
+                  <p class="month">IPE</p>
                 </div>
                 <div class="month-group selected">
                   <div class="bar h-100"></div>
-                  <p class="month">May</p>
+                  <p class="month">IT</p>
                 </div>
                 <div class="month-group">
                   <div class="bar h-50"></div>
-                  <p class="month">Jun</p>
+                  <p class="month">Mech</p>
                 </div>
-                <div class="month-group">
-                  <div class="bar h-75"></div>
-                  <p class="month">Jul</p>
-                </div>
-                <div class="month-group">
-                  <div class="bar h-25"></div>
-                  <p class="month">Aug</p>
-                </div>
-                <div class="month-group">
-                  <div class="bar h-50"></div>
-                  <p class="month">Sep</p>
-                </div>
-                <div class="month-group">
-                  <div class="bar h-75"></div>
-                  <p class="month">Oct</p>
-                </div>
-                <div class="month-group">
-                  <div class="bar h-25"></div>
-                  <p class="month">Nov</p>
-                </div>
-                <div class="month-group">
-                  <div class="bar h-100"></div>
-                  <p class="month">Dez</p>
-                </div>
+                
               </div>
 
               <div class="stats-info">
@@ -220,8 +269,31 @@
                   <p>Bonus payments <span>$92</span></p>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
+          <!-- 2nd graph starts -->
+          <div class="s-tickertape">
+            <div class="ticker-wrap">
+              <div class="ticker">
+                <div class="ticker__item">New job openings posted: Software Engineer at WinnyWay Ltd. </div>
+                <div class="ticker__item">Campus recruitment drive by CreatorSpace Ltd. on June 1st – register now on our placement portal.</div>
+                <div class="ticker__item">Tech Talk by industry expert John Doe on 'Future of AI' this Friday at 5 PM – don't miss out!</div>
+                <div class="ticker__item">Mock interview sessions available next week. Book your slot through the career services page </div>
+                <div class="ticker__item">Reminder: Resume building workshop scheduled for May 20th at 3 PM in the main auditorium.</div>
+                
+              </div>
+              </div>
+          </div>
+          
+          
+          <div class="firstgraph"><canvas id="bar-chart"></canvas></div>
+          <h6 class="text-center">Share of Indian IT industry in global IT spend from financial year 2001 to 2020, with an estimate for 2021</h6>
+          
+          <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+          <h6 class="text-center">Share of Information technology/business process management sector in the GDP of India from financial year 2009 to 2023</h6>
+          <canvas id="myChart1" style="width:100%;max-width:600px"></canvas>
+          <h6 class="text-center">Export value of IT software and services from India in financial year 2022, by type</h6>
+
         </div>
         <!-- DASHBOARD AREA ENDS -->
 
@@ -352,7 +424,7 @@
               <div>Placement Drives Info</div>
               <!-- ADD DRIVE BUTTON -->
               <button id="addDriveBtn" class="btn-success">
-                <a href="#">Add Drive</a>
+                <a href="/admin">Add Drive</a>
               </button>
             </div>
 
@@ -418,39 +490,128 @@
 
     <!-- CONTENT AREA ENDS -->
     
-      <script>
-      //         document.querySelector('#admin-studentinfo').addEventListener('click', function () {
-      //     showadminstudentinfo();
-      // });
-      // function showadminstudentinfo()
-      // {
-      //     document.getElementById("admin-disp-db").style.display="none";
-      //     document.getElementById("admin-disp-student").style.display="block";
-      //     document.getElementById("admin-disp-calendar").style.display="none";
-      //     document.getElementById("admin-disp-drive").style.display="none";    
-      // }
-      document.querySelector('#admin-drives').addEventListener('click', function () {
-          showadmindrives();
-      });
-      function showadmindrives()
-      {
-          document.getElementById("admin-disp-db").style.display="none";
-          // document.getElementById("admin-disp-student").style.display="none";
-          document.getElementById("admin-disp-calendar").style.display="none";
-          document.getElementById("admin-disp-drive").style.display="block";    
-      }
-      document.querySelector('#admin-calendar').addEventListener('click', function () {
-          showadmincalendar();
-      });
-      function showadmincalendar()
-      {
-          document.getElementById("admin-disp-db").style.display="none";
-          // document.getElementById("admin-disp-student").style.display="none";
-          document.getElementById("admin-disp-calendar").style.display="block";
-          document.getElementById("admin-disp-drive").style.display="none";    
-      }
-      </script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.0/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="../static/jsfolder/calendar.js"></script>
+    <script>
+      document.querySelector('#admin-db').addEventListener('click', function () {
+  showadminstudentinfo();
+});
+function showadminstudentinfo()
+{
+  document.getElementById("admin-disp-db").style.display="block";
+  document.getElementById("admin-disp-drive").style.display="none"; 
+  document.getElementById("admin-disp-calendar").style.display="none";   
+}
 
+
+document.querySelector('#admin-drives').addEventListener('click', function () {
+  showadmindrives();
+});
+function showadmindrives()
+{
+  document.getElementById("admin-disp-db").style.display="none";
+  document.getElementById("admin-disp-drive").style.display="block";
+  document.getElementById("admin-disp-calendar").style.display="none";    
+}
+document.querySelector('#admin-calendar').addEventListener('click', function () {
+  showadmincalendar();
+});
+function showadmincalendar()
+{
+  document.getElementById("admin-disp-db").style.display="none";
+  document.getElementById("admin-disp-drive").style.display="none"; 
+  document.getElementById("admin-disp-calendar").style.display="block";   
+}
+
+// Chart.defaults.global.elements.rectangle.backgroundColor = '#FF0000';
+
+var bar_ctx = document.getElementById('bar-chart').getContext('2d');
+
+var purple_orange_gradient = bar_ctx.createLinearGradient(0, 0, 0, 600);
+purple_orange_gradient.addColorStop(0, 'orange');
+purple_orange_gradient.addColorStop(1, 'purple');
+
+var bar_chart = new Chart(bar_ctx, {
+    type: 'bar',
+    data: {
+        labels: ["FY 2001", "FY 2008", "FY 2009", "FY 2010", "FY 2020", "FY 2021"],
+        datasets: [{
+            label: '# of %',
+            data: [2.5,8.4,8.2, 9.7, 18.5, 19.2],
+            backgroundColor: purple_orange_gradient,
+            hoverBackgroundColor: purple_orange_gradient,
+            hoverBorderWidth: 1,
+            hoverBorderColor: 'purple'
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+
+// FOR 2ND CHART
+
+        const xValues = [50,60,70,80,90,100,110,120,130,140,150];
+  const yValues = [7,8,8,9,9,9,10,11,14,14,15];
+
+  new Chart("myChart", {
+    type: "line",
+    data: {
+      labels: xValues,
+      datasets: [{
+        fill: false,
+        lineTension: 0,
+        backgroundColor: "rgba(0,0,255,1.0)",
+        borderColor: "rgba(0,0,255,0.1)",
+        data: yValues
+      }]
+    },
+    options: {
+      legend: {display: false},
+      scales: {
+        yAxes: [{ticks: {min: 6, max:16}}],
+      }
+    }
+  });
+
+  // FOR DOUGHNUT CHART
+
+  const xValues1 = ["Italy", "France", "Spain", "USA", "Argentina"];
+const yValues1 = [55, 49, 44, 24, 15];
+const barColors = [
+"#b91d47",
+"#00aba9",
+"#2b5797",
+"#e8c3b9",
+"#1e7145"
+];
+
+new Chart("myChart1", {
+type: "doughnut",
+data: {
+labels: xValues1,
+datasets: [{
+backgroundColor: barColors,
+data: yValues1
+}]
+},
+options: {
+title: {
+display: true,
+text: "Export value of IT software and services"
+}
+}
+});
+
+
+</script> 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -469,7 +630,11 @@
       integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
       crossorigin="anonymous"
     ></script>
-    <script src="../static/jsfolder/calendar.js"></script>
+    
+    
+    
+      
     <script src="../static/jsfolder/home.js"></script>
+    
   </body>
 </html>

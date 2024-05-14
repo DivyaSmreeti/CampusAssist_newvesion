@@ -131,6 +131,9 @@ body {
 	margin-left: 10px;
 	align-items: right;
 }
+.del-student{
+    display: none !important;
+  }
 
 /* Buttons in the calendar */
 .button-container-calendar button {

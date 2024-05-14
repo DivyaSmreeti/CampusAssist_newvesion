@@ -18,6 +18,101 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <title>CampusAssist</title>
+    <style>
+      * {
+  box-sizing: border-box;
+}
+
+@-webkit-keyframes ticker {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+  }
+  100% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+@keyframes ticker {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+  }
+  100% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+.ticker-wrap {
+  position: absolute;
+  top: 15%;
+  width: 100%;
+  overflow: hidden;
+  height: 2rem;
+  background-color: #FFEFEF;
+  color: black;
+  padding-left: 100%;
+  box-sizing: content-box;
+}
+.ticker-wrap .ticker {
+  display: inline-block;
+  height: 2rem;
+  line-height: 2rem;
+  white-space: nowrap;
+  padding-right: 100%;
+  box-sizing: content-box;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-name: ticker;
+  animation-name: ticker;
+  -webkit-animation-duration: 30s;
+  animation-duration: 30s;
+}
+.ticker-wrap .ticker__item {
+  display: inline-block;
+  padding: 0 2rem;
+  font-size: 1rem;
+  color: black;
+}
+body{
+  overflow-x: hidden;
+}
+.cbtn1{
+  max-width: 100px !important;
+}
+.comments1{
+  display: flex;
+  flex-direction: column;
+  padding: 5%;
+  padding-left: 0 !important;
+  margin: 2%;
+  margin-left: 0 !important;
+  gap: 10px;
+}
+.img-div{
+  height: 200px;
+  width: 155px;
+  border: 1px black solid;
+  border-radius: 3px;
+}
+.img-head{
+  display: flex !important;
+  align-items: center !important ;
+  left: 5%;
+  overflow: hidden;
+}
+.newimg{
+  height: 200px;
+  width: 155px;
+  
+}
+
+
+    </style>
 
     <!-- Bootstrap CSS CDN -->
     <link
@@ -62,17 +157,17 @@
         <ul class="list-unstyled components">
           <li>
             <i class="fa-solid fa-house" style="color: #ffffff"></i>
-            <a id="dashboard" href="#"> Dashboard</a>
+            <a id="s-dashboard" href="#">Dashboard</a>
           </li>
           <li>
-            <a href="#" id="details">Student Details</a>
+            <a href="#" id="s-details">Student Details</a>
           </li>
           <li>
-            <a href="#" id="drives">Placement Drives</a>
+            <a href="#" id="s-drives">Placement Drives</a>
           </li>
 
           <li>
-            <a href="#" id="calendar">Full Calendar</a>
+            <a href="#" id="s-calendar-link">Full Calendar</a>
           </li>
           <li>
             <a href="#" id="studentchat">HelpDesk</a>
@@ -118,13 +213,41 @@
         </nav>
 
         <!-- CONTENT AREA STARTS -->
+        <div id="s-db-content">
+          <div class="s-tickertape">
+            <div class="ticker-wrap">
+              <div class="ticker">
+                <div class="ticker__item">New job openings posted: Software Engineer at WinnyWay Ltd. </div>
+                <div class="ticker__item">Campus recruitment drive by CreatorSpace Ltd. on June 1st – register now on our placement portal.</div>
+                <div class="ticker__item">Tech Talk by industry expert John Doe on 'Future of AI' this Friday at 5 PM – don't miss out!</div>
+                <div class="ticker__item">Mock interview sessions available next week. Book your slot through the career services page </div>
+                <div class="ticker__item">Reminder: Resume building workshop scheduled for May 20th at 3 PM in the main auditorium.</div>
+                
+              </div>
+              </div>
+          </div>
+          
+          
+          <div class="firstgraph"><canvas id="bar-chart"></canvas></div>
+          <h6 class="text-center">Share of Indian IT industry in global IT spend from financial year 2001 to 2020, with an estimate for 2021</h6>
+          
+          <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+          <h6 class="text-center">Share of Information technology/business process management sector in the GDP of India from financial year 2009 to 2023</h6>
+          <canvas id="myChart1" style="width:100%;max-width:600px"></canvas>
+          <h6 class="text-center">Export value of IT software and services from India in financial year 2022, by type</h6>
 
-        <!-- PAGE 1 CONTENT STARTS -->
+          
+
+        </div>
+
+
+        <!-- PAGE 2 CONTENT STARTS -->
         <div class="profile-page">
-          <div id="page1Content" style="display: none">
+          <div id="s-details-content" style="display: none">
             <h3>Student Profile</h3>
             <div class="profile-wrap">
               <div class="">
+
                 <div class="profile-row1">
                   <p>Profile</p>
                   <button type="button" id="editProfileBtn" class="download">
@@ -135,7 +258,12 @@
 
               <div class="row r1">
                 <div class="user-card row">
-                  <div class="col-12 wrap-data">
+                  <div class="col-3 img-head">
+                    <div class="img-div">
+                      <img src="../static/images/defaultuserprofile.jpg" class="newimg"/>
+                    </div>
+                  </div>
+                  <div class="col-9 wrap-data">
                     <div class="card-data pt-5">
                       <h3 id="profileName">Divya Smreeti</h3>
                       <p class="text-muted">Student</p>
@@ -164,6 +292,7 @@
               </div>
             </div>
           </div>
+
           <div id="editProfileForm" style="display: none">
             <h3>Edit Profile</h3>
             <div class="edit-frm">
@@ -220,27 +349,12 @@
           </div>
         </div>
 
-        <!-- PAGE 2 CONTENT  -->
-        <div id="page2Content" style="display: none">
+        <!-- PAGE 3 CONTENT  -->
+        <div id="s-calendar" style="display: none">
           <div class="wrapper">
             <div class="container-calendar">
               <div id="left">
                 <h1>Dynamic Calendar</h1>
-                <div id="event-section">
-                  <h3>Add Event</h3>
-                  <input type="date" id="eventDate" />
-                  <input
-                    type="text"
-                    id="eventTitle"
-                    placeholder="Event Title"
-                  />
-                  <input
-                    type="text"
-                    id="eventDescription"
-                    placeholder="Event Description"
-                  />
-                  <button id="addEvent" onclick="addEvent()">Add</button>
-                </div>
                 <div id="reminder-section">
                   <h3>Reminders</h3>
                   <!-- List to display reminders -->
@@ -248,7 +362,7 @@
                     <li data-event-id="1">
                       <strong>Event Title</strong>
                       - Event Description on Event Date
-                      <button class="delete-event" onclick="deleteEvent(1)">
+                      <button class="delete-event del-student" onclick="deleteEvent(1)">
                         Delete
                       </button>
                     </li>
@@ -290,32 +404,31 @@
             </div>
           </div>
         </div>
-        <!-- PAGE 2 CONTENT ENDS  -->
+        <!-- PAGE 4 CONTENT ENDS  -->
 
         <!-- PAGE FOR COMMENT SECTION STARTS -->
-        <div id="pageCommentContent" style="display: none">
-          <h1>Help Desk</h1>
-          <div class="comments">
+        <div id="s-comments" style="display: none">
+          <div>
+          <h2>HelpDesk</h2>
+          <div class="comments1">
             <input
               type="text"
-              id="commentInput"
-              placeholder="Write your queries or feedback..."
+              id="commentInput1"
+              placeholder="Write your queries and feedback.."
             />
-            <button onclick="postComment()">Post</button>
-            <div id="commentList"></div>
+            <button class="ubtn cbtn1" onclick="postComment1()">Post</button>
+            <div id="commentList1"></div>
           </div>
+        </div>
         </div>
         <!-- PAGE FOR COMMENT SECTION ENDS -->
 
-        <!-- PAGE 3 CONTENT STARTS -->
+        <!-- PAGE 5 CONTENT STARTS -->
         <div class="drive-page">
-          <div id="page3Content" style="display: none">
+          <div id="s-drivepage" style="display: none">
             <div class="heading-drive">
               <div>Placement Drives Info</div>
-              <!-- ADD DRIVE BUTTON -->
-              <!-- <button id="addDriveBtn" class="btn-success">
-                <a href="#">Add Drive</a>
-              </button> -->
+              <a class="ubtn" href="/analyze"> Analyze</a>
             </div>
 
             <!-- CARDS FOR THE PAGE STARTS -->
@@ -338,7 +451,7 @@
                     </div>
                     <div class="mt-5">
                       <h6>{{n.company_location}}</h6>
-                      <p>Job Description : {{n.job_description}}</p>
+                      <p class="text-bold" style="color: black;">Job Description : {{n.job_description}}</p>
                       <h6>Eligibility: {{n.eligibility}}</h6>
                       <h6>Skills Required :{{n.skills}}</h6>
                       <h6>Min Stipend :{{n.min_stipend}}</h6>
@@ -350,18 +463,7 @@
                   </div>
                 </div>
 
-                <div>
-                  <h1>Comment Section</h1>
-                  <div class="comments">
-                    <input
-                      type="text"
-                      id="commentInput"
-                      placeholder="Comment about your company of interest among the above given companies "
-                    />
-                    <button onclick="postComment()">Post</button>
-                    <div id="commentList"></div>
-                  </div>
-                </div>
+                
 
                 
                 
@@ -369,7 +471,20 @@
             </div>
             {% endfor %}
             <!-- CARD ENDS  -->
+            <div>
+              <h3>Comment Section</h3>
+              <div class="comments">
+                <input
+                  type="text"
+                  id="commentInput"
+                  placeholder="Comment about your company of interest among the above given companies "
+                />
+                <button class="ubtn" onclick="postComment()">Post</button>
+                <div id="commentList"></div>
+              </div>
+            </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -377,7 +492,176 @@
     <!-- PAGE 1 CONTENT ENDS -->
 
     <!-- CONTENT AREA ENDS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.0/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="../static/jsfolder/calendar.js"></script>
+    <script>
+      // 1
+document.querySelector('#s-dashboard').addEventListener('click', function () {
+    showsdb();
+      });
 
+function showsdb()
+{
+    document.getElementById("s-db-content").style.display="block";
+    document.getElementById("s-details-content").style.display="none";
+    document.getElementById("s-drivepage").style.display="none";
+    document.getElementById("s-calendar").style.display="none";
+    document.getElementById("s-comments").style.display="none";
+    
+}
+
+// 2
+
+document.querySelector('#s-details').addEventListener('click', function () {
+    showsdetails();
+      });
+
+function showsdetails()
+{
+    document.getElementById("s-db-content").style.display="none";
+    document.getElementById("s-details-content").style.display="block";
+    document.getElementById("s-drivepage").style.display="none";
+    document.getElementById("s-calendar").style.display="none";
+    document.getElementById("s-comments").style.display="none";
+    
+}
+
+// 3
+
+document.querySelector('#s-drives').addEventListener('click', function () {
+    showsdrives();
+      });
+
+function showsdrives()
+{
+    document.getElementById("s-db-content").style.display="none";
+    document.getElementById("s-details-content").style.display="none";
+    document.getElementById("s-drivepage").style.display="block";
+    document.getElementById("s-calendar").style.display="none";
+    document.getElementById("s-comments").style.display="none";
+    
+}
+
+// 4
+
+document.querySelector('#s-calendar-link').addEventListener('click', function () {
+    showscalendar();
+      });
+
+function showscalendar()
+{
+    document.getElementById("s-db-content").style.display="none";
+    document.getElementById("s-details-content").style.display="none";
+    document.getElementById("s-drivepage").style.display="none";
+    document.getElementById("s-calendar").style.display="block";
+    document.getElementById("s-comments").style.display="none";
+    
+}
+
+// 5
+
+document.querySelector('#studentchat').addEventListener('click', function () {
+    showscomment();
+      });
+
+function showscomment()
+{
+    document.getElementById("s-db-content").style.display="none";
+    document.getElementById("s-details-content").style.display="none";
+    document.getElementById("s-drivepage").style.display="none";
+    document.getElementById("s-calendar").style.display="none";
+    document.getElementById("s-comments").style.display="block";
+    
+}
+      // Chart.defaults.global.elements.rectangle.backgroundColor = '#FF0000';
+
+      var bar_ctx = document.getElementById('bar-chart').getContext('2d');
+
+      var purple_orange_gradient = bar_ctx.createLinearGradient(0, 0, 0, 600);
+      purple_orange_gradient.addColorStop(0, 'orange');
+      purple_orange_gradient.addColorStop(1, 'purple');
+
+      var bar_chart = new Chart(bar_ctx, {
+          type: 'bar',
+          data: {
+              labels: ["FY 2001", "FY 2008", "FY 2009", "FY 2010", "FY 2020", "FY 2021"],
+              datasets: [{
+                  label: '# of %',
+                  data: [2.5,8.4,8.2, 9.7, 18.5, 19.2],
+                  backgroundColor: purple_orange_gradient,
+                  hoverBackgroundColor: purple_orange_gradient,
+                  hoverBorderWidth: 1,
+                  hoverBorderColor: 'purple'
+              }]
+          },
+          options: {
+              scales: {
+                  yAxes: [{
+                      ticks: {
+                          beginAtZero:true
+                      }
+                  }]
+              }
+          }
+      });
+
+      // FOR 2ND CHART
+
+              const xValues = [50,60,70,80,90,100,110,120,130,140,150];
+        const yValues = [7,8,8,9,9,9,10,11,14,14,15];
+
+        new Chart("myChart", {
+          type: "line",
+          data: {
+            labels: xValues,
+            datasets: [{
+              fill: false,
+              lineTension: 0,
+              backgroundColor: "rgba(0,0,255,1.0)",
+              borderColor: "rgba(0,0,255,0.1)",
+              data: yValues
+            }]
+          },
+          options: {
+            legend: {display: false},
+            scales: {
+              yAxes: [{ticks: {min: 6, max:16}}],
+            }
+          }
+        });
+
+        // FOR DOUGHNUT CHART
+
+        const xValues1 = ["Italy", "France", "Spain", "USA", "Argentina"];
+const yValues1 = [55, 49, 44, 24, 15];
+const barColors = [
+  "#b91d47",
+  "#00aba9",
+  "#2b5797",
+  "#e8c3b9",
+  "#1e7145"
+];
+
+new Chart("myChart1", {
+  type: "doughnut",
+  data: {
+    labels: xValues1,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues1
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Export value of IT software and services"
+    }
+  }
+});
+
+
+      </script>
     <script>
       // Function to save profile details to local storage
       function saveProfileToLocalStorage() {
@@ -417,7 +701,7 @@
       document
         .getElementById("editProfileBtn")
         .addEventListener("click", function () {
-          document.getElementById("page1Content").style.display = "none";
+          document.getElementById("s-details-content").style.display = "none";
           document.getElementById("editProfileForm").style.display = "block";
 
           // Fill form fields with current profile details
@@ -441,7 +725,7 @@
       document
         .getElementById("cancelEditBtn")
         .addEventListener("click", function () {
-          document.getElementById("page1Content").style.display = "block";
+          document.getElementById("s-details-content").style.display = "block";
           document.getElementById("editProfileForm").style.display = "none";
         });
 
@@ -552,7 +836,7 @@
       integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
       crossorigin="anonymous"
     ></script>
-    <script src="../static/jsfolder/calendar.js"></script>
+    
     <script src="../static/jsfolder/home.js"></script>
   </body>
 </html>
