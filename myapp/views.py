@@ -5,13 +5,14 @@ import matplotlib.pyplot as plt
 
 def analyze_comments(request):
     comments = [
-        "I facebook this product! It's amazing!",
-        "Terrible service, never using this again.",
-        "The quality is okay, but the price is too high.",
-        "I'm satisfied with my purchase.",
-        "Worst experience ever, wouldn't recommend to anyone."
+        "I am interested for Job role in WinnyWay",
+        "I am not interesed in service based , interested in startup",
+        "I want to join in Winnyway startup",
+        "I'm satisfied with Amazon's job role",
+        "I am interesed in Netflix job role",
+        " Netflix's job role is bad",
     ]
-    sentiment_counts = {'WinnyWay(startup)': 0, 'Netflix': 0, 'Amazon': 5}
+    sentiment_counts = {'Positive': 0, 'Negative': 0, 'Neutral': 0}
     for comment in comments:
         sentiment = analyze_sentiment(comment)
         sentiment_counts[sentiment] += 1

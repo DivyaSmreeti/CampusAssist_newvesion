@@ -443,6 +443,7 @@
               <div id="commentList1"></div>
             </div>
           </div>
+          
         </div>
         <!-- PAGE FOR COMMENT SECTION ENDS -->
 
@@ -843,6 +844,67 @@
       window.onload = function () {
         displayComments();
       };
+      // FOR COMMENTS SECTION 2
+
+        // Function to retrieve comments from localStorage
+function getComments1() {
+  return JSON.parse(localStorage.getItem("comments1")) || [];
+}
+
+// Function to save comments to localStorage
+function saveComments1(comments1) {
+  localStorage.setItem("comments1", JSON.stringify(comments1));
+}
+
+// Function to create a comment item element
+function createCommentItem1(comment1, index1) {
+  const commentItem1 = document.createElement("div");
+  commentItem1.classList.add("comment-item");
+  commentItem1.innerHTML = `
+    <p>${comment1}</p>
+    <button class="delete-comment" onclick="deleteComment1(${index1})">Delete</button>
+  `;
+  return commentItem1;
+}
+
+// Function to display comments on the page
+function displayComments1() {
+  const commentList1 = document.getElementById("commentList1");
+  const comments1 = getComments1();
+  commentList1.innerHTML = "";
+  comments1.forEach((comment1, index1) => {
+    const commentItem1 = createCommentItem1(comment1, index1);
+    commentList1.appendChild(commentItem1);
+  });
+}
+
+// Function to post a new comment
+function postComment1() {
+  const commentInput1 = document.getElementById("commentInput1");
+  const comment1 = commentInput1.value.trim();
+  if (comment1 !== "") {
+    const comments1 = getComments1();
+    comments1.push(comment1);
+    saveComments1(comments1);
+    displayComments1();
+    commentInput1.value = "";
+  }
+}
+
+// Function to delete a comment
+function deleteComment1(index1) {
+  const comments1 = getComments1();
+  comments1.splice(index1, 1);
+  saveComments1(comments1);
+  displayComments1();
+}
+
+// Display existing comments on page load
+window.onload = function () {
+  displayComments1();
+};
+
+
     </script>
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script

@@ -5,8 +5,8 @@ def analyze_sentiment(comment):
     score = sia.polarity_scores(comment)
     compound_score = score['compound']
     if compound_score >= 0.05:
-        return 'WinnyWay(startup)'
+        return 'Positive'
     elif compound_score <= -0.05:
-        return 'Netflix'
+        return 'Negative'
     else:
-       return 'Amazon'
+       return 'Neutral'
