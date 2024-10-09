@@ -21,6 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('account.urls')),
     path('',include('addopp.urls')),
-    path('',include('myapp.urls')),
+    # path('',include('myapp.urls')),
+    path('chatbot/', include('chatbot.urls')),
 
 ]
